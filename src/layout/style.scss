@@ -1,0 +1,52 @@
+// Header / Top Nav
+.header {
+  @include flex_layout();
+  @include flex_items();
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $header-height;
+  background: $header-background;
+  color: $header-color;
+  p {
+    padding: 0 10px;
+    font-size: 1.3em;
+  }
+}
+
+.content {
+  height: 100%;
+  width: 100%;
+  padding: $header-height 0 $footer-height;
+}
+
+// Footer
+.footer {
+  @include flex_layout();
+  @include flex_items($margin: auto 10px);
+  @extend small;
+  position: fixed;
+  z-index: 5;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: $footer-height;
+  background: $footer-background;
+  color: $footer-color;
+  border-top: $border;
+  a {
+    color: $orange;
+    vertical-align: top;
+    text-decoration: none;
+    transition: color 0.5s ease-in-out;
+    &:hover {
+      color: $shade9;
+    }
+  }
+}
+
+.spacer {
+  flex-grow: 2;
+}

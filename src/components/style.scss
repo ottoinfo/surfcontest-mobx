@@ -1,0 +1,49 @@
+.spacer {
+  flex-grow: 2;
+}
+
+.search {
+  padding: 0 10px;
+  border-radius: 10px;
+  &:focus {
+    outline: none;
+  }
+}
+
+// Surfer List
+.surfers {
+  border-right: $border;
+  width: 300px;
+  li {
+    padding: 20px;
+  }
+  li + li {
+    border-top: $border;
+  }
+}
+
+// Surfer Info
+.item {
+  @include flex_layout();
+  @include flex_items($margin: auto 10px);
+}
+
+.image {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  border: $border;
+}
+
+.info {}
+
+.title {
+  h1 {
+    font-size: 1.5em;
+    color: $shade3;
+  }
+  p {
+    color: $shade5;
+  }
+}
