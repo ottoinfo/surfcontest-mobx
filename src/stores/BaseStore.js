@@ -24,12 +24,16 @@ export default class BaseStore {
     return new Model(data, this)
   }
 
+  @computed get getItems() {
+    return this.items.toJS()
+  }
+
   addItem(item) {
     this.items.push(this.createModel(item))
   }
 
-  updateItem(json) {
-    const item = this.findItem(json.id)
+  updateItem(json, attr) {
+    const item = this.findItem(json.id, attr)
     if (!item) {
       this.addItem(json)
     }
@@ -42,8 +46,8 @@ export default class BaseStore {
     this.items.splice(this.items.findIndex((obj)=> obj.uuid == item.uuid), 1)
   }
 
-  findItem(id) {
-    return this.items.find((item)=> item.id == id)
+  findItem(val, attr="id") {
+    return this.items.find((item)=> item[attr] == val)
   }
 
   handleErrors = (resp)=> {

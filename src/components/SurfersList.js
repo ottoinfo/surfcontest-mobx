@@ -8,6 +8,7 @@ export default class SurferList extends React.Component {
 
   static propTypes = {
     surfers: React.PropTypes.array,
+    handleAdd: React.PropTypes.func,
   }
 
   constructor(props, context) {
@@ -22,15 +23,11 @@ export default class SurferList extends React.Component {
   render() {
     if (!this.surfers.length) return null
     return (
-      <div className={styles.list}>
-        <div>All | Men | Women </div>
-
-        <ul className={styles.surfers}>
-        { this.surfers.map(surfer =>
-          <SurferInfo key={surfer.uuid} surfer={surfer}/> 
-        ) }
-        </ul>
-      </div>
+      <ul className={styles.surfers}>
+      { this.surfers.map(surfer =>
+        <SurferInfo key={surfer.uuid} surfer={surfer} handleAdd={this.props.handleAdd}/> 
+      ) }
+      </ul>
     )
   }
 }

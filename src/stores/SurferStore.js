@@ -1,32 +1,22 @@
+import BaseStore from "./BaseStore"
 import { observable, computed, action } from "mobx"
 import API from "../services/API"
-import MovieModel from "../models/SurferModel"
+import SurferModel from "../models/SurferModel"
 import surferJSON from "../../public/athleterankings.json"
 
-class SurferStore {
+class SurferStore extends BaseStore {
   @observable isLoaded = false
   @observable items = []
   @observable errors = {}
   @observable pendingRequest = 0
 
   constructor() {
+    super()
     this.api = new API("/athleterankings.json")
   }
 
-  setup(args) {
-    Object.assign(this, args)
-  }
-
-  @computed get isLoading() {
-    return this.pendingRequest > 0
-  }
-
-  @computed get getItems() {
-    return this.items.toJS()
-  }
-
   createModel = (data={}) => {
-    return new MovieModel(data, this)
+    return new SurferModel(data, this)
   }
 
   @action
@@ -42,7 +32,6 @@ class SurferStore {
     // }))
 
     // OR
-    console.log(surferJSON.athletes)
     this.items = Object.keys(surferJSON.athletes).map((key)=> this.createModel(surferJSON.athletes[key]) )
   }
 }

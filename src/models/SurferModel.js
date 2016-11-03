@@ -3,7 +3,10 @@ import { observable, computed } from "mobx"
 
 export default class Surfer extends BaseModel {
   // Model Attributes
+  @observable firstName = ""
+  @observable lastName = ""
   @observable show = true
+  @observable entered = false
 
   @computed get urlPath() {
     return "/"
